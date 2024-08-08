@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
-import styles from "./style.module.css";
 import {
   motion,
   useMotionValue,
@@ -97,11 +96,21 @@ export default function Index({ stickyElement }) {
     return `rotate(${rotate}) scaleX(${scaleX}) scaleY(${scaleY})`;
   };
 
+  const cursorStyle = {
+    position: "fixed",
+    width: "15px",
+    height: "15px",
+    backgroundColor: "black",
+    borderRadius: "50%",
+    pointerEvents: "none",
+  };
+
   return (
-    <div className={styles.cursorContainer}>
+    <div>
       <motion.div
         transformTemplate={template}
         style={{
+          ...cursorStyle,
           left: smoothMouse.x,
           top: smoothMouse.y,
           scaleX: scale.x,
@@ -111,7 +120,6 @@ export default function Index({ stickyElement }) {
           width: cursorSize,
           height: cursorSize,
         }}
-        className={styles.cursor}
         ref={cursor}
       ></motion.div>
     </div>
